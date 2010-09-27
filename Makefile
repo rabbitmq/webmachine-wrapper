@@ -1,4 +1,4 @@
-DEPS:=mochiweb
+DEPS:=mochiweb-wrapper
 APP_NAME:=webmachine
 
 ifdef PACKAGE_DIR
