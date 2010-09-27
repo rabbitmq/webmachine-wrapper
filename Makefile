@@ -18,7 +18,7 @@ $(CHECKOUT_DIR):
 
 $(CHECKOUT_DIR)/stamp: | $(CHECKOUT_DIR)
 	rm -f $@
-	cd $(@D) && echo COMMIT_SHORT_HASH:=$$(hg id -i | cut -c -7) >> $@
+	cd $(@D) && echo COMMIT_SHORT_HASH:=$$(hg id -i | cut -c -7) > $@
 
 .PHONY: $(EBIN_DIR)/webmachine.app
 $(EBIN_DIR)/webmachine.app: $(CHECKOUT_DIR)/ebin/webmachine.app | $(EBIN_DIR)
