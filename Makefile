@@ -21,10 +21,6 @@ $(CHECKOUT_DIR)/stamp: | $(CHECKOUT_DIR)
 	rm -f $@
 	cd $(@D) && echo COMMIT_SHORT_HASH:=$$(hg id -i | cut -c -7) > $@
 
-.PHONY: $(EBIN_DIR)/$(APP_NAME).app
-$(EBIN_DIR)/$(APP_NAME).app: $(CHECKOUT_DIR)/ebin/$(APP_NAME).app | $(EBIN_DIR)
-	sed -e 's/{vsn, *\"[^\"]\+\"/{vsn,\"$($@_VERSION)\"/' < $< > $@
-
 $(PACKAGE_DIR)/clean_RM:=$(CHECKOUT_DIR) $(CHECKOUT_DIR)/stamp $(EBIN_DIR)/$(APP_NAME).app
 $(PACKAGE_DIR)/clean::
 	rm -rf $($@_RM)
@@ -33,7 +29,13 @@ ifneq "$(strip $(patsubst clean%,,$(patsubst %clean,,$(TESTABLEGOALS))))" ""
 include $(CHECKOUT_DIR)/stamp
 
 VERSION:=rmq$(GLOBAL_VERSION)-hg$(COMMIT_SHORT_HASH)
-$(EBIN_DIR)/$(APP_NAME).app_VERSION:=$(VERSION)
+
+$(EBIN_DIR)/$(APP_NAME).app.$(VERSION)_VERSION:=$(VERSION)
+$(EBIN_DIR)/$(APP_NAME).app.$(VERSION): $(CHECKOUT_DIR)/ebin/$(APP_NAME).app | $(EBIN_DIR)
+	sed -e 's/{vsn, *\"[^\"]\+\"/{vsn,\"$($@_VERSION)\"/' < $< > $@
+
+$(PACKAGE_DIR)_APP:=true
+
 endif
 endif
 
