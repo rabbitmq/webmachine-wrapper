@@ -4,7 +4,6 @@ APP_NAME:=webmachine
 UPSTREAM_HG:=http://bitbucket.org/justin/webmachine
 REVISION:=0c4b60ac68b4
 
-EBIN_DIR:=$(PACKAGE_DIR)/ebin
 CHECKOUT_DIR:=$(PACKAGE_DIR)/$(APP_NAME)-hg
 SOURCE_DIR:=$(CHECKOUT_DIR)/src
 INCLUDE_DIR:=$(CHECKOUT_DIR)/include
