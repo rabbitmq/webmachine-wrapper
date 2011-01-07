@@ -20,6 +20,7 @@ $(CHECKOUT_DIR)/.done:
 	rm -rf $(CHECKOUT_DIR)
 	hg clone -r $(REVISION) $(UPSTREAM_HG) $(CHECKOUT_DIR)
 	patch -d $(CHECKOUT_DIR) -p1 <$(PACKAGE_DIR)/uneunit.patch
+	patch -d $(CHECKOUT_DIR) -p1 <$(PACKAGE_DIR)/10-crypto.patch
 	touch $$@
 
 $(PACKAGE_DIR)/version.mk: $(CHECKOUT_DIR)/.done
