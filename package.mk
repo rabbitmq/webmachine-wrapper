@@ -1,36 +1,10 @@
-DEPS:=mochiweb-wrapper
 APP_NAME:=webmachine
+DEPS:=mochiweb-wrapper
 
 UPSTREAM_HG:=http://bitbucket.org/justin/webmachine
-REVISION:=0c4b60ac68b4
+UPSTREAM_REVISION:=0c4b60ac68b4
+WRAPPER_PATCHES:=uneunit.patch 10-crypto.patch
 
-CHECKOUT_DIR:=$(PACKAGE_DIR)/$(APP_NAME)-hg
-SOURCE_DIRS+=$(CHECKOUT_DIR)/src
-INCLUDE_DIRS+=$(CHECKOUT_DIR)/include
+UPSTREAM_APP_FILE=$(CLONE_DIR)/ebin/$(APP_NAME).app
 
-ERLC_OPTS:=-I $(CHECKOUT_DIR)
-
-$(eval $(call safe_include,$(PACKAGE_DIR)/version.mk))
-
-VERSION:=rmq$(GLOBAL_VERSION)-hg$(COMMIT_SHORT_HASH)
-
-define package_targets
-
-$(CHECKOUT_DIR)/.done:
-	rm -rf $(CHECKOUT_DIR)
-	hg clone -r $(REVISION) $(UPSTREAM_HG) $(CHECKOUT_DIR)
-	patch -d $(CHECKOUT_DIR) -p1 <$(PACKAGE_DIR)/uneunit.patch
-	patch -d $(CHECKOUT_DIR) -p1 <$(PACKAGE_DIR)/10-crypto.patch
-	touch $$@
-
-$(PACKAGE_DIR)/version.mk: $(CHECKOUT_DIR)/.done
-	echo COMMIT_SHORT_HASH:=`hg id -R $(CHECKOUT_DIR) -i | cut -c -7` >$$@
-
-$(EBIN_DIR)/$(APP_NAME).app: $(CHECKOUT_DIR)/ebin/$(APP_NAME).app $(PACKAGE_DIR)/version.mk
-	@mkdir -p $$(@D)
-	sed -e 's|{vsn, *\"[^\"]*\"|{vsn,\"$(VERSION)\"|' <$$< >$$@
-
-$(PACKAGE_DIR)+clean::
-	rm -rf $(CHECKOUT_DIR) $(EBIN_DIR)/$(APP_NAME).app $(PACKAGE_DIR)/version.mk
-
-endef
+ERLC_OPTS:=-I $(CLONE_DIR)
