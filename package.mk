@@ -7,4 +7,5 @@ WRAPPER_PATCHES:=uneunit.patch 10-crypto.patch
 
 ORIGINAL_APP_FILE=$(CLONE_DIR)/ebin/$(APP_NAME).app
 
-ERLC_OPTS:=-I $(CLONE_DIR)
+# Webmachine source files do -include("include/...")
+PACKAGE_ERLC_OPTS+=-I $(CLONE_DIR)
