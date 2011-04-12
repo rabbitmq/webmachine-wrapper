@@ -3,6 +3,8 @@ DEPS:=mochiweb-wrapper
 
 UPSTREAM_HG:=http://bitbucket.org/justin/webmachine
 UPSTREAM_REVISION:=0c4b60ac68b4
+RETAIN_ORIGINAL_VERSION:=true
+
 WRAPPER_PATCHES:=uneunit.patch 10-crypto.patch
 
 ORIGINAL_APP_FILE=$(CLONE_DIR)/ebin/$(APP_NAME).app
