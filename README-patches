@@ -11,3 +11,7 @@ uneunit.patch
 xref-fix.patch
   - remove an unused function that xref complains about. Backport of:
     https://github.com/basho/webmachine/commit/3c62ab6f045bf5ac8b45e945e22fd5a4926eabd9
+
+ssl.patch
+  - fix SSL on webmachine, see https://issues.basho.com/show_bug.cgi?id=769
+    (unresolved at time of writing).
