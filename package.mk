@@ -8,7 +8,6 @@ RETAIN_ORIGINAL_VERSION:=true
 WRAPPER_PATCHES:=uneunit.patch 10-crypto.patch xref-fix.patch ssl.patch
 
 ORIGINAL_APP_FILE=$(CLONE_DIR)/ebin/$(APP_NAME).app
-DO_NOT_GENERATE_APP_FILE=true
 
 # Webmachine source files do -include("include/...")
 PACKAGE_ERLC_OPTS+=-I $(CLONE_DIR)
