@@ -1,4 +1,5 @@
 APP_NAME:=webmachine
+RELEASABLE:=true
 DEPS:=mochiweb-wrapper
 
 UPSTREAM_HG:=http://bitbucket.org/justin/webmachine
