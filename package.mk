@@ -1,7 +1,7 @@
 APP_NAME:=webmachine
 DEPS:=mochiweb-wrapper
 
-UPSTREAM_GIT:=https://github.com/basho/webmachine.git
+UPSTREAM_GIT:=https://github.com/rabbitmq/webmachine.git
 UPSTREAM_REVISION:=52e62bc655d700dfc8f409d44db0a07b39c3234f
 RETAIN_ORIGINAL_VERSION:=true
 
