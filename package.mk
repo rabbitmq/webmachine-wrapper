@@ -5,7 +5,8 @@ UPSTREAM_GIT:=https://github.com/rabbitmq/webmachine.git
 UPSTREAM_REVISION:=52e62bc655d700dfc8f409d44db0a07b39c3234f
 RETAIN_ORIGINAL_VERSION:=true
 
-WRAPPER_PATCHES:=10-remove-crypto-dependency.patch
+WRAPPER_PATCHES:=10-remove-crypto-dependency.patch \
+	20-silent-at-startup.patch
 
 ORIGINAL_APP_FILE=$(CLONE_DIR)/ebin/$(APP_NAME).app
 DO_NOT_GENERATE_APP_FILE=true
