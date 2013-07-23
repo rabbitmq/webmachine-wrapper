@@ -2,14 +2,12 @@ APP_NAME:=webmachine
 DEPS:=mochiweb-wrapper
 
 UPSTREAM_GIT:=https://github.com/rabbitmq/webmachine.git
-UPSTREAM_REVISION:=52e62bc655d700dfc8f409d44db0a07b39c3234f
+UPSTREAM_REVISION:=e9359c7092b228f671417abe68319913f1aebe46
 RETAIN_ORIGINAL_VERSION:=true
 
-WRAPPER_PATCHES:=10-remove-crypto-dependency.patch \
-                 20-parameterised-modules-r16a.patch \
-                 30-silent-at-startup.patch
+WRAPPER_PATCHES:=10-remove-crypto-dependency.patch
 
-ORIGINAL_APP_FILE=$(CLONE_DIR)/ebin/$(APP_NAME).app
+ORIGINAL_APP_FILE=$(CLONE_DIR)/src/$(APP_NAME).app.src
 DO_NOT_GENERATE_APP_FILE=true
 
 define package_rules

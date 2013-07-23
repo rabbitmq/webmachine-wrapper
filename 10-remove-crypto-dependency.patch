@@ -1,15 +1,17 @@
-diff --git a/ebin/webmachine.app b/ebin/webmachine.app
-index c7b90c5..682bf35 100644
---- a/ebin/webmachine.app
-+++ b/ebin/webmachine.app
-@@ -23,4 +23,4 @@
+diff --git a/src/webmachine.app.src b/src/webmachine.app.src
+index eb949a2..2c46c3f 100644
+--- a/src/webmachine.app.src
++++ b/src/webmachine.app.src
+@@ -7,7 +7,6 @@
    {registered, []},
+   {applications, [kernel,
+                   stdlib,
+-                  crypto,
+                   mochiweb]},
    {mod, {webmachine_app, []}},
-   {env, []},
--  {applications, [kernel, stdlib, crypto, mochiweb]}]}.
-+  {applications, [kernel, stdlib, mochiweb]}]}.
+   {env, []}
 diff --git a/src/webmachine.erl b/src/webmachine.erl
-index 0b27f6c..f6c8236 100644
+index 47f1ce2..2e5be1b 100644
 --- a/src/webmachine.erl
 +++ b/src/webmachine.erl
 @@ -28,7 +28,6 @@
@@ -21,10 +23,10 @@ index 0b27f6c..f6c8236 100644
  
  %% @spec stop() -> ok
 diff --git a/src/webmachine_request.erl b/src/webmachine_request.erl
-index be9f623..517516f 100644
+index 2a5ff7a..ee459a3 100644
 --- a/src/webmachine_request.erl
 +++ b/src/webmachine_request.erl
-@@ -590,7 +590,7 @@ parts_to_body(BodyList, Size) when is_list(BodyList) ->
+@@ -624,7 +624,7 @@ parts_to_body(BodyList, Size, Req) when is_list(BodyList) ->
              {CT, _} ->
                  CT
          end,
